@@ -42,6 +42,9 @@ omitted, as these defaults are used if not specified.
 {
     "plugin-emojis": {
         "sendNativeEmojis": true,
+        "parseEmoticons": true,
+        "parseColons": true,
+        "parseNative": true,
         "imageTitle": "name", // 'name', 'colons', 'native', ''
         "emojiSet": "google", // 'apple', 'google', 'twitter', 'facebook', 'native'
         "pickerProps": {

@@ -1,5 +1,5 @@
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const TerserPlugin = require('terser-webpack-plugin');
 const makeSourceMap = process.argv.indexOf('--srcmap') > -1;
 
@@ -11,6 +11,9 @@ module.exports = {
     },
     output: {
         filename: 'plugin-[name].js',
+    },
+    externals: {
+        'vue': 'kiwi.Vue',
     },
     module: {
         rules: [

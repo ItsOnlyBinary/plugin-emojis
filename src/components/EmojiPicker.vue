@@ -12,7 +12,7 @@
 /* global kiwi:true */
 
 import { Picker } from 'emoji-mart-vue-fast/src';
-import * as config from '../config.js';
+import * as config from '@/config.js';
 
 export default {
     components: {

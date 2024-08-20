@@ -3,9 +3,10 @@
 import { EmojiIndex } from 'emoji-mart-vue-fast/src';
 import 'emoji-mart-vue-fast/css/emoji-mart.css';
 import EmojiData from 'emoji-mart-vue-fast/data/all.json';
-import EmojiPicker from './components/EmojiPicker.vue';
-import * as config from './config.js';
-import * as EmojiProvider from './libs/EmojiProvider.js';
+import EmojiPicker from '@/components/EmojiPicker.vue';
+import * as config from '@/config.js';
+import * as EmojiProvider from '@/libs/EmojiProvider.js';
+import '@/res/style.scss';
 
 kiwi.plugin('emojis', (kiwi) => {
     config.setDefaults(kiwi);

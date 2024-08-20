@@ -1,7 +1,7 @@
 /* global kiwi:true */
 
 import GraphemeSplitter from 'grapheme-splitter';
-import * as config from '../config.js';
+import * as config from '@/config.js';
 
 const graphemeSplitter = new GraphemeSplitter();
 let emojiListMap;

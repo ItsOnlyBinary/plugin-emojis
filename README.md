@@ -1,23 +1,38 @@
-# KiwiIRC - Emoji Plugin
+# KiwiIRC - Emojis Plugin
 
-This plugin adds an emoji picker to KiwiIRC's UI.
+This plugin adds an advanced emoji picker to Kiwi IRC's UI. It also parses incoming emojis and replaces them for images to allow for a consistent emojis experience.
 
-This plugin requires yarn.
+> powered by [emoji-mart-vue-fast](https://github.com/serebrov/emoji-mart-vue)
 
-### Installation
+## Building from source
 
-    $ git clone https://github.com/kiwiirc/plugin-emojis.git
-    $ cd plugin-emojis
-    $ yarn && yarn build
+### Dependencies
 
-Copy the built `dist/*.js` file to your kiwi plugins folders.
+* node (https://nodejs.org/)
+* yarn (https://yarnpkg.com/)
+
+### Building for production
+``` bash
+git clone https://github.com/kiwiirc/plugin-emojis.git
+cd plugin-emojis
+yarn && yarn build
+```
+
+### Installing
+Copy the built files from `dist/` to your kiwi plugins folders.
 
 Next, add the following config parameter to `/your/kiwi/folder/static/config.json`
 
-    "plugins": [
-        {"name": "emoji", "url": "static/plugins/plugin-emoji-prelim.js"}
-    ]
+``` json
+"plugins": [
+    {"name": "emojis", "url": "static/plugins/plugin-emojis-prelim.js"}
+]
+```
 
+> note: `plugin-emojis-prelim.js` prevents the plugin from loading on mobiles as they normally have an emoji picker built into their keyboards,
+> if you would just like the emoji picker to always be loaded then use `plugin-emojis.js`
+
+### Configuring
 
 Optionally, you may include (in config.json) these settings,
 changing the values as needed. Any or all of these may be
@@ -34,12 +49,12 @@ omitted, as these defaults are used if not specified.
             "title": "",
             "perLine": 8,
             "i18n": {
-                "search": "Searchy",
+                "search": "Search",
                 "notfound": "No Emoji Found",
                 "categories": {
                     "search": "Search Results",
                     "recent": "Frequently Used",
-                    "smileys": "Ugly Smileys & Emoticon",
+                    "smileys": "Smileys & Emoticon",
                     "people": "People & Body",
                     "nature": "Animals & Nature",
                     "foods": "Food & Drink",
@@ -54,7 +69,7 @@ omitted, as these defaults are used if not specified.
         },
         "frequentlyUsedLength": 16,
         // Do NOT include the following 3 options unless you intend to set them
-        // doing so would change the default behavour of the plugin
+        // doing so would change the default behaviour of the plugin
         "frequentlyUsedList": [],
         "categoryInclude": [],
         "categoryExclude": [],
@@ -72,4 +87,6 @@ omitted, as these defaults are used if not specified.
 }
 ```
 
-This plugin is powered by [emoji-mart-vue-fast](https://github.com/serebrov/emoji-mart-vue)
+## License
+
+[Licensed under the Apache License, Version 2.0](LICENSE).

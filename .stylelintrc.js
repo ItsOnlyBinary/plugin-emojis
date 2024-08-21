@@ -21,6 +21,7 @@ module.exports = {
         'declaration-no-important': true,
         'media-feature-range-notation': null,
         'no-descending-specificity': null,
+        'no-duplicate-selectors': null,
         'number-max-precision': null,
         'order/properties-order': null,
         'property-no-vendor-prefix': null,

@@ -4,6 +4,10 @@
         margin: 6px 0;
     }
 
+    .emoji-mart-category-label {
+        position: sticky;
+    }
+
     .emoji-mart-scroll {
         scrollbar-width: thin;
         scrollbar-color: var(--comp-scroller-fg, #cdcdcd) var(--comp-scroller-bg, #f0f0f0);
@@ -53,6 +57,7 @@
     background-color: var(--brand-default-bg);
     color: var(--brand-default-fg);
 }
+
 .kiwi-emoji-mart,
 .kiwi-emoji-mart .emoji-mart-search input,
 .kiwi-emoji-mart .emoji-mart-category-label h3 {
@@ -71,6 +76,11 @@
     border-color: var(--comp-border);
 }
 
+.kiwi-emoji-mart .emoji-mart-category .emoji-mart-emoji:hover::before,
+.kiwi-emoji-mart .emoji-mart-emoji-selected::before {
+    background-color: #7f7f7f42;
+}
+
 .kiwi-emoji-mart {
     .emoji-mart-anchor {
         color: var(--brand-default-fg);
@@ -81,7 +91,7 @@
     }
 }
 
-.kiwi-wrap[data-theme="radioactive"] .kiwi-emoji-mart {
+.kiwi-wrap[data-theme='radioactive'] .kiwi-emoji-mart {
     background-color: #031e11ef;
 
     .emoji-mart-scroll {

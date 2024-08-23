@@ -120,11 +120,6 @@ export function getEmojis(word) {
 function makeEmojiObj(emojiRaw, match, index) {
     const emojiObj = {
         ascii: match,
-        url: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
-        imgProps: {
-            style: `background-position: ${emojiRaw.getPosition()}; height: 1.2em; vertical-align: -0.3em;`,
-            className: `emoji-set-${config.setting('emojiSet')} emoji-type-image`,
-        },
         mart: emojiRaw,
         matchDetail: {
             index,
@@ -132,9 +127,19 @@ function makeEmojiObj(emojiRaw, match, index) {
         },
     };
 
-    if (emojiRaw.imageUrl) {
-        emojiObj.url = emojiRaw.imageUrl;
+    /* eslint-disable no-underscore-dangle */
+    if ((emojiRaw._data.has_img_external && config.setting('externalEnabled')) || emojiRaw.imageUrl) {
+        emojiObj.url = emojiRaw._data.has_img_external
+            ? emojiRaw._data.externalUrl
+            : emojiRaw.imageUrl;
+
         emojiObj.imgProps = {};
+    } else {
+        emojiObj.url = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        emojiObj.imgProps = {
+            style: `background-position: ${emojiRaw.getPosition()}; height: 1.2em; vertical-align: -0.3em;`,
+            className: `emoji-set-${config.setting('emojiSet')} emoji-type-image`,
+        };
     }
 
     return emojiObj;

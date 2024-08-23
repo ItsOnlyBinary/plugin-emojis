@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const ESLintFormatter = require('eslint-formatter-friendly');
 const { VueLoaderPlugin } = require('vue-loader');
+const CopyPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
 
@@ -58,6 +59,19 @@ module.exports = (env, argv, config) => {
                 formatter: ESLintFormatter,
             }),
             new VueLoaderPlugin(),
+            new CopyPlugin({
+                patterns: [
+                    {
+                        from: utils.pathResolve('src/res/animated_emojis'),
+                        to: utils.pathResolve('dist/plugin-emojis/animated'),
+                        toType: 'dir',
+                        filter: async (file) => /\.gif$/.test(file),
+                        globOptions: {
+                            ignore: ['.*'],
+                        },
+                    },
+                ],
+            }),
             new CaseSensitivePathsPlugin(),
             new FriendlyErrorsWebpackPlugin(),
         ],

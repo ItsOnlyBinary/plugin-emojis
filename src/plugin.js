@@ -3,11 +3,13 @@
 import { EmojiIndex } from 'emoji-mart-vue-fast/src';
 import 'emoji-mart-vue-fast/css/emoji-mart.css';
 import EmojiData from 'emoji-mart-vue-fast/data/all.json';
-import AnimatedEmojiData from '@/res/animated_emojis/data.json';
+import { transparentPixel } from 'emoji-mart-vue-fast/src/utils/emoji-data';
 import EmojiPicker from '@/components/EmojiPicker.vue';
 import * as config from '@/config.js';
 import * as EmojiProvider from '@/libs/EmojiProvider.js';
 import '@/res/style.scss';
+
+import AnimatedEmojiData from '../static/emojis_gif_64/data.json';
 
 kiwi.plugin('emojis', (kiwi) => {
     config.setDefaults(kiwi);
@@ -42,6 +44,24 @@ kiwi.plugin('emojis', (kiwi) => {
             });
         });
     });
+
+    const warningEmoji = emojiIndex.findEmoji('warning');
+    window.emojiLoaded = (event) => {
+        if (event.target.src !== transparentPixel) {
+            event.target.style.imageBackground = 'unset';
+        }
+    };
+    window.emojiError = (event) => {
+        event.target.src = transparentPixel;
+        const style = event.target.style;
+        if (!style.backgroundPosition) {
+            // style: `background-position: ${emojiRaw.getPosition()}; height: 1.2em; vertical-align: -0.3em;`,
+            style.backgroundPosition = warningEmoji.getPosition();
+            style.height = '1.2em';
+            style.verticalAlign = '-0.3em';
+        }
+        console.log('warningEmoji', warningEmoji);
+    };
 
     kiwi.Vue.watch(
         () => config.setting('externalEnabled'),

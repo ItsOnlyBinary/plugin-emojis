@@ -14,6 +14,7 @@
 /* global kiwi:true */
 
 import { Picker } from 'emoji-mart-vue-fast/src';
+import { transparentPixel } from 'emoji-mart-vue-fast/src/utils/emoji-data';
 import * as config from '@/config.js';
 
 export default {
@@ -79,10 +80,13 @@ export default {
 
             this.ircinput.addImg(
                 this.getBestAscii(emoji),
-                'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+                transparentPixel,
                 {
                     style: `background-position: ${emoji.getPosition()}; height: 1.2em; vertical-align: -0.3em;`,
                     className: `emoji-set-${config.setting('emojiSet')} emoji-type-image`,
+                    load: 'emojiLoaded',
+                    error: 'emojiError',
+
                 },
             );
         },

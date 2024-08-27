@@ -1,6 +1,7 @@
 /* global kiwi:true */
 
 import GraphemeSplitter from 'grapheme-splitter';
+import { transparentPixel } from 'emoji-mart-vue-fast/src/utils/emoji-data';
 import * as config from '@/config.js';
 
 const graphemeSplitter = new GraphemeSplitter();
@@ -37,6 +38,7 @@ export function blockToHtml(block, isSingle, showEmoticons) {
     const html = [`<img src="${emoji.url}" alt="${block.content}"`];
 
     const imageTitle = config.setting('imageTitle');
+
     if (imageTitle && emoji.mart[imageTitle]) {
         html.push(`title="${emoji.mart[imageTitle]}"`);
     }
@@ -45,16 +47,15 @@ export function blockToHtml(block, isSingle, showEmoticons) {
     if (isSingle) {
         classes.push('kiwi-messagelist-emoji--single');
     }
-    if (emoji.imgProps.className) {
-        classes.push(emoji.imgProps.className);
-    }
+    classes.push(`emoji-set-${config.setting('emojiSet')}`, 'emoji-type-image');
+
     html.push(`class="${classes.join(' ')}"`);
 
     if (emoji.imgProps.style) {
         html.push(`style="${emoji.imgProps.style}"`);
     }
 
-    html.push('/>');
+    html.push('load="emojiLoaded" error="emojiError" />');
 
     return html.join(' ');
 }
@@ -135,10 +136,9 @@ function makeEmojiObj(emojiRaw, match, index) {
 
         emojiObj.imgProps = {};
     } else {
-        emojiObj.url = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        emojiObj.url = transparentPixel;
         emojiObj.imgProps = {
             style: `background-position: ${emojiRaw.getPosition()}; height: 1.2em; vertical-align: -0.3em;`,
-            className: `emoji-set-${config.setting('emojiSet')} emoji-type-image`,
         };
     }
 

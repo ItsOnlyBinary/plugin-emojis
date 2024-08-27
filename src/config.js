@@ -2,6 +2,8 @@
 
 export const basePath = getBasePath();
 export const configBase = 'plugin-emojis';
+// eslint-disable-next-line no-undef
+export const buildVersion = __VERSION__;
 
 export const defaultConfig = {
     sendNativeEmojis: true,
@@ -31,7 +33,9 @@ export const defaultConfig = {
     ],
     externalEnabled: true,
     externalPicker: 'none', // 'all', 'hover', 'none'
-    externalUrl: basePath + configBase + '/animated/%CODEPOINT%.gif',
+    externalUrl: 'static/plugin-emojis/emojis_gif_64/%CODEPOINT%.gif',
+    // externalUrl:
+    //     `https://cdn.jsdelivr.net/gh/kiwiirc/plugin-emojis@v${buildVersion}/static/emojis_png_64/%CODEPOINT%.png`,
 };
 
 export function setDefaults(kiwi) {

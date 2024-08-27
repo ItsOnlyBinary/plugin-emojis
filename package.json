@@ -13,7 +13,7 @@
         "lint:style": "stylelint --allow-empty-input \"./src/**/*.{vue,html,css,less,scss,sass}\""
     },
     "dependencies": {
-        "emoji-mart-vue-fast": "git+https://github.com/ItsOnlyBinary/emoji-mart-vue.git#b53683dc9f3c3bdceacf18ed4dd2dd80ea9323f3",
+        "emoji-mart-vue-fast": "git+https://github.com/ItsOnlyBinary/emoji-mart-vue.git#5b42792832f425c0188dab2f7cc4e2de12c327e3",
         "grapheme-splitter": "^1.0.4",
         "platform": "^1.3.6"
     },
